@@ -34,7 +34,6 @@ int socket_listen(struct http_operations *ops)
 
     /* Start Web server. */
   repeat:
-    client_sockfd = -1;
     listen(sockfd, 25);
 
     client_sockfd = accept(sockfd, &client_addr, &len);
@@ -59,6 +58,7 @@ int socket_listen(struct http_operations *ops)
     pthread_create(&thread_id1, NULL, http_thead, ops);
 #endif
 
+    //pthread_join(thread_id1, NULL);
 err:
     goto repeat;
 }
@@ -143,8 +143,9 @@ void http_close(struct http_operations *ops)
 
     shutdown(client_sockfd, SHUT_RDWR);
     close(client_sockfd);
+#if 0
     close(sockfd);
-
+#endif
 #if 0
     // terminate child process
     exit(0);
