@@ -76,7 +76,7 @@ void *http_main(int n)
 	printf("exit ops->open\n");
 
 	// HTTP main thread
-	pthread_create(thread_id1, NULL, http_thead, ops);
+	pthread_create(&thread_id1, NULL, http_thead, ops);
 
 	return NULL;
 }
