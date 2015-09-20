@@ -61,7 +61,6 @@ void *http_thead(void *argu)
 
 void *http_main(int n)
 {
-   	pthread_t thread_id1;
 	struct http_operations *ops = http_data[n].fops;
 
 	/* blocking open */
@@ -74,9 +73,6 @@ void *http_main(int n)
 	   printf("ops->open = NULL\n");
 	}
 	printf("exit ops->open\n");
-
-	// HTTP main thread
-	pthread_create(&thread_id1, NULL, http_thead, ops);
 
 	return NULL;
 }

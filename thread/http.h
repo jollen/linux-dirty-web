@@ -21,4 +21,6 @@ struct http_data {
 int http_register(struct http_operations *, int);
 int http_unregister(struct http_operations *);
 
+void *http_thead(void *);
+
 #endif

@@ -43,13 +43,23 @@ int socket_listen(struct http_operations *ops)
     if (self != 0)
 	goto repeat;
 #endif
+#if 1
+    pthread_t thread_id1;
+
     if (client_sockfd == -1) {
-	perror("accept:");
-        return -1;
+        perror("accept:");
+        goto err;
     }
 
+    // private data
     priv->client_sockfd = client_sockfd;
-    return 0;
+
+    // HTTP main thread
+    pthread_create(&thread_id1, NULL, http_thead, ops);
+#endif
+
+err:
+    goto repeat;
 }
 
 /* callback functions */
