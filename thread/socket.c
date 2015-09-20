@@ -34,6 +34,7 @@ int socket_listen(struct http_operations *ops)
 
     /* Start Web server. */
   repeat:
+    client_sockfd = -1;
     listen(sockfd, 25);
 
     client_sockfd = accept(sockfd, &client_addr, &len);
